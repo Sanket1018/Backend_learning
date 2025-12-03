@@ -46,5 +46,11 @@ public class CategoryService {
          return categoryDTO;
     }
 
+    // Delete category
+    public String deleteCategory(Long id)
+    {
+        categoryRepository.deleteById(id);
+        return "category"+id+" successfully deleted";
+    }
 
 }

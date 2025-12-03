@@ -11,6 +11,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class ProductService {
@@ -34,6 +36,24 @@ public class ProductService {
         productDTO = ProductMapper.toProductDTO(product);
         return productDTO;
     }
+
+    // Get all products
+    public List<ProductDTO> getAllProducts()
+    {
+        // need to convert entity to dto list
+       return productRepository.findAll().stream().map(ProductMapper::toProductDTO).toList();
+    }
+
+    // Get a product by id
+    public ProductDTO getProductById(Long id)
+    {
+        Product product = productRepository.findById(id).orElseThrow(()->new RuntimeException("Prduct not found"));
+
+        // need to convert entity to dto
+        return ProductMapper.toProductDTO(product);
+    }
+
+
 }
 
 

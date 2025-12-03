@@ -5,10 +5,9 @@ import com.Product.Product.service.ProductService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("api/products")
@@ -22,10 +21,20 @@ public class ProductController {
         return new ResponseEntity<>(productService.createProduct(productDTO), HttpStatus.CREATED);
     }
 
-    // get all product
-    // get a product by id
+    // get All products
+    @GetMapping
+    public List<ProductDTO> getAllProducts() {
+        return productService.getAllProducts();
+    }
+
+    // get a products by id
+    @GetMapping("/{id}")
+    public ProductDTO getProductsById(@PathVariable Long id){
+        return productService.getProductById(id);
+    }
+
+
     // update the product id
     // delete the product by id
-    // delete all products
 
 }
