@@ -53,6 +53,27 @@ public class ProductService {
         return ProductMapper.toProductDTO(product);
     }
 
+    // Update the product by id
+    public ProductDTO updateProductById(Long id,ProductDTO productDTO)
+    {
+        //we have to take product dto and we need also category id
+        //for this we are going to chek the category id is present or not
+        Category category= categoryRepository.findById(productDTO.getCategoryId()).orElseThrow(()->new RuntimeException("Category id is nor found"));
+
+        // Now we need to check product is present or not and we have to set the entity
+        Product product = productRepository.findById(id).orElseThrow(()-> new RuntimeException("Product is not found plz check it properly"));
+        product.setName(productDTO.getName());
+        product.setPrice(productDTO.getPrice());
+        product.setDescription(product.getDescription());
+        product.setCategory(category);
+
+        // we are saving the updated product
+        productRepository.save(product);
+
+        // for the returning updated product we have to convert the product entity to the dto
+        return ProductMapper.toProductDTO(product);
+    }
+
 
 }
 
