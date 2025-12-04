@@ -35,11 +35,15 @@ public class ProductController {
 
 
     // update the product by id
-    @PutMapping("{/id}")
+    @PutMapping("/{id}")
     public ProductDTO updateProductById(@PathVariable Long id,@RequestBody ProductDTO productDTO){
-        productService.updateProductById(id,productDTO);
+        return productService.updateProductById(id,productDTO);
     }
 
     // delete the product by id
-
+    @DeleteMapping("/{id}")
+    public String deleteProductById(@PathVariable Long id)
+    {
+        return productService.deleteProductById(id);
+    }
 }
