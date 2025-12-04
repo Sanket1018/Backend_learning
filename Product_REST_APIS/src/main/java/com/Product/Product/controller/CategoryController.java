@@ -2,6 +2,7 @@ package com.Product.Product.controller;
 
 import com.Product.Product.dto.CategoryDTO;
 import com.Product.Product.entity.Category;
+import com.Product.Product.exception.CategoryAlreadyExistsException;
 import com.Product.Product.service.CategoryService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -16,10 +17,12 @@ import java.util.List;
 public class CategoryController {
     private CategoryService categoryService;
     //create a category
+
     @PostMapping
-    public ResponseEntity<CategoryDTO> createCategory(@RequestBody CategoryDTO categoryDTO)
-    {
-        return new ResponseEntity<>(categoryService.createCategory(categoryDTO), HttpStatus.CREATED);
+    public ResponseEntity<?> createCategory(@RequestBody CategoryDTO categoryDTO) {
+
+            CategoryDTO savedCategory = categoryService.createCategory(categoryDTO);
+            return ResponseEntity.status(HttpStatus.CREATED).body(savedCategory);
     }
 
     //Get all categories
