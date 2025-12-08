@@ -6,7 +6,7 @@ public class PriortityQueueLaunch {
         pq.add(400);
         pq.add(100);
         pq.add(300);
-        pq.add(100);
+        pq.add(200);
 
         System.out.println(pq);
 
