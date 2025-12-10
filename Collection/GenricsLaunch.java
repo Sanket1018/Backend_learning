@@ -1,5 +1,30 @@
 import java.util.ArrayList;
 
+class Employee{
+    private int id;
+    private String name;
+    private String city;
+
+    public Employee(int id, String name,String city){
+        this.id = id;
+        this.name = name;
+        this.city = city;
+    }
+    public Employee(){
+
+    }
+    
+    @Override
+    public String toString(){
+            return id+" "+name+" "+city;
+    }
+}
+
+
+
+
+
+
 public class GenricsLaunch {
     public static void main(String[] args) {
         ArrayList al = new ArrayList<>();
@@ -40,7 +65,30 @@ public class GenricsLaunch {
         // but  when the size exceeds than double the current capacity in case of arraylist and in case of vector it increases by 100%
 
         // Array have the default typesafety
+       
+       
         // We can provide the typesafety to the collection also using generics
+
+         //Accessing the employees object using genrics
+
+        ArrayList<Employee> employee = new ArrayList<>();
+        employee.add(new Employee(101,"Sanket","Pune"));
+        employee.add(new Employee(102,"Akash","Mumbai"));
+        employee.add(new Employee(103,"Rohan","Sangli"));
+
+        // accessing using for each loop
+        for(Employee e: employee){
+            System.out.println(e);
+        }
+
+
+
+
     }
+
+
+
+   
+
     
 }
