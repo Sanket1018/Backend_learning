@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.security_demo.spring_security_demo.entity.Users;
+import com.security_demo.spring_security_demo.service.JwtTokenService;
 import com.security_demo.spring_security_demo.service.UserService;
 
 @RestController
@@ -21,6 +22,9 @@ public class UserController {
 	
 	@Autowired
 	private AuthenticationManager authManager;
+	
+	@Autowired
+	private JwtTokenService jwtService;
 	
 	BCryptPasswordEncoder bpe = new BCryptPasswordEncoder();
 	
@@ -47,11 +51,15 @@ public class UserController {
 		Authentication authentication = authManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
 		if(authentication.isAuthenticated())
 		{
-			return "success";
+			String jwt = jwtService.generateToken(user.getUsername());
+			return jwt;
+			// I want to generate the token
 		}
 		else {
 			return "invalid increditionals";
 		}
 	}
+	
+	
 
 }
