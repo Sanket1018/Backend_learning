@@ -42,6 +42,8 @@ public class MapLaunch {
         tm.put(1,"Kubernetes");
         tm.put(2,"Terraform");
 
+        // key cannot be null in TreeMap
+
         System.out.println(tm);
     }
 }
