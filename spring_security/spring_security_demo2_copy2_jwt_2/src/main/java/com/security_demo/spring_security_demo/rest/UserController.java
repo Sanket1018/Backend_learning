@@ -48,13 +48,10 @@ public class UserController {
 	@PostMapping("/login")
 	public String loginUser(@RequestBody Users user)
 	{
-		// if the username is password is correct then it will authenticate  
 		Authentication authentication = authManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
 		if(authentication.isAuthenticated())
 		{
-			// here we have to write a logic to generate a token
 			String jwt = jwtService.generateToken(user.getUsername());
-			System.out.println(jwt);
 			return jwt;
 			// I want to generate the token
 		}
