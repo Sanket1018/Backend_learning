@@ -1,6 +1,6 @@
-class AClass{
+class A{
     void display(){
-        System.out.println("Inside class AClass");
+        System.out.println("Inside class A");
     }
 }
 
@@ -8,7 +8,7 @@ class AClass{
 // suppose I want to override display method of class A without creating a subclass
 public class Annoymous {
     public static void main(String[] args) {
-        AClass a = new AClass(){
+        A a = new A(){
             void display(){
                 System.out.println("Inside Annoymous class");
             }
