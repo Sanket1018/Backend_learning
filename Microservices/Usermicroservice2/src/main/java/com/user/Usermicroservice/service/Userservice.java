@@ -1,6 +1,7 @@
 package com.user.Usermicroservice.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -10,6 +11,9 @@ public class Userservice {
 	
 	@Autowired
 	private UserFeignClient feignClient;
+	
+	@Autowired
+	private Environment env;
 	
 	public String getCourseInfo()
 	{
@@ -23,7 +27,8 @@ public class Userservice {
 		// Using feign client it will update the port accordingly
 		
 		ResponseEntity<String> response = feignClient.getCourseInfo();
-		return response.getBody()+" Comming from another resource"; // Coming from the another the REST APIS
+		String port = env.getProperty("server.port");
+		return response.getBody()+" Comming from another resource"+"port : "+port; // Coming from the another the REST APIS
 	}
 	
 

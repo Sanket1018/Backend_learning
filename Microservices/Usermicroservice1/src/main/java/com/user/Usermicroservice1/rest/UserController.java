@@ -1,4 +1,4 @@
-package com.user.Usermicroservice.rest;
+package com.user.Usermicroservice1.rest;
 
 
 import org.springframework.http.HttpStatus;
